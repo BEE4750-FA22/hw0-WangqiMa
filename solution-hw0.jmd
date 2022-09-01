@@ -19,27 +19,67 @@ Pkg.instantiate()
 # Problem 1
 
 ## Problem 1.1
-
+'''julia
+function square_number(x)
+output = x ^ 2
+return output
+end
+'''
 ## Problem 1.2
-
+'''julia
+"We can see that $5 ^ 2 =$ 'j square_number(5)'."
+'''
 ## Problem 1.3
-
+'''julia
+using Plots
+x = range(-10,10)
+y = square_number.(x)
+plot(y)
+'''
 # Problem 2
 
 ## Problem 2.1
 
 ## Problem 2.2
-
+'''julia
+function square_root(x,t)
+  a = x
+  while(true)
+    root = 0.5 * (a + (x/a))
+    if (abs(root - a) < t)
+      return root
+    else
+      a = root
+    end
+  end
+end
+"We can see that the square root of 2 is $ 'j square_root(2,0.01)'."
+'''
 # Problem 3
 
 ## Problem 3.1
-
+'''julia
+r = rand(Float64,20)
+'''
 ## Problem 3.2
+'''
+function mean(vect)
+  sum = 0
+  for i in 1:length(vect)
+    sum += vect[i]
+    i + 1
+  end
+  output = sum / length(vect)
+  return output
+end
+"We can see that the mean value of r is $ 'j mean(r)'."
 
 ## Problem 3.3
 
 ## Problem 3.4
-
+'''julia
+m = rand(Int64, (5,5))
+'''
 # Problem 4
 
 ## Problem 4.1
