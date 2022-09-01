@@ -73,7 +73,7 @@ function mean(vect)
   return output
 end
 "We can see that the mean value of r is $ 'j mean(r)'."
-
+'''
 ## Problem 3.3
 
 ## Problem 3.4
@@ -83,9 +83,19 @@ m = rand(Int64, (5,5))
 # Problem 4
 
 ## Problem 4.1
-
+'''julia
+Pkg.add("Distributions")
+using Distributions
+my_normal_dist = LogNormal(μ,σ)
+yt = rand(my_normal_dist, 100)
+'''
 ## Problem 4.2
-
+'''julia
+function Simulation(a,yt,b,q,T,X0)
+Xt = X0 + a + yt + ((X0 ^ Q)/(1+X0^q)) - b * X0
+return Xt
+end
+'''
 ## Problem 4.3
 
 # References
