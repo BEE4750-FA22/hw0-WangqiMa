@@ -1,6 +1,6 @@
 ---
 title: "BEE 4750/5750 Homework 0"
-author: "Your name here (your netID here)"
+author: "Wangqi Ma wm335"
 date: `j import Dates; Dates.Date(Dates.now())`
 weave_options:
   term: true
@@ -19,29 +19,27 @@ Pkg.instantiate()
 # Problem 1
 
 ## Problem 1.1
-'''julia
+```julia
 function square_number(x)
 output = x ^ 2
 return output
 end
-'''
+```
 ## Problem 1.2
-'''julia
-"We can see that $5 ^ 2 =$ 'j square_number(5)'."
-'''
+We can see that $5 ^ 2$ = $`j square_number(5)`$.
 ## Problem 1.3
-'''julia
+```julia
 using Plots
 x = range(-10,10)
 y = square_number.(x)
 plot(y)
-'''
+```
 # Problem 2
 
 ## Problem 2.1
-
+Let's assume that $\sqrt{x}$ is less than both $x/a$ and $a$, then we will get two inequations. Solve both of them, we will get two inequations conflict with each other. If we assume $\sqrt{x}$ is larger than both of them, the same result will also show up.
 ## Problem 2.2
-'''julia
+```julia
 function square_root(x,t)
   a = x
   while(true)
@@ -53,16 +51,16 @@ function square_root(x,t)
     end
   end
 end
-"We can see that the square root of 2 is $ 'j square_root(2,0.01)'."
-'''
+```
+We can see that the square root of $2$ is  $`j square_root(2,0.01)`$.
 # Problem 3
 
 ## Problem 3.1
-'''julia
+```julia
 r = rand(Float64,20)
-'''
+```
 ## Problem 3.2
-'''
+```julia
 function mean(vect)
   sum = 0
   for i in 1:length(vect)
@@ -72,30 +70,50 @@ function mean(vect)
   output = sum / length(vect)
   return output
 end
-"We can see that the mean value of r is $ 'j mean(r)'."
-'''
+```
+We can see that the mean value of $r$ is  $`j mean(r)`$.
+```julia
+function demean!(vect)
+  vect_op = vect
+  for i in 1 : length(vect)
+    vect_op[i] -= mean(vect)
+  end
+  return vect_op
+end
+demean!(r)
+```
 ## Problem 3.3
-
+```julia
+vector = [0,0,1,1,1,1,1,1,0,0]
+```
 ## Problem 3.4
-'''julia
+```julia
 m = rand(Int64, (5,5))
-'''
+```
 # Problem 4
 
 ## Problem 4.1
-'''julia
+```julia
 Pkg.add("Distributions")
 using Distributions
-my_normal_dist = LogNormal(μ,σ)
+my_normal_dist = LogNormal(log(0.03),0.005)
 yt = rand(my_normal_dist, 100)
-'''
+```
 ## Problem 4.2
-'''julia
+```julia
 function Simulation(a,yt,b,q,T,X0)
-Xt = X0 + a + yt + ((X0 ^ Q)/(1+X0^q)) - b * X0
-return Xt
+  X1 = X0 + a + yt + ((X0 ^ Q)/(1+X0^q)) - b * X0
+  X_old = X1
+  for i in 1 : T
+    X_new = X_old + a + yt + ((X0 ^ Q)/(1+X0^q)) - b * X0
+    X_old = X_new
+  return X_new
+  end
 end
-'''
+```
 ## Problem 4.3
-
+```julia
+using Plots
+plot(Simulation(0.4,yt,0.42,2,100,100)
+```
 # References
